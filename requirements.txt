@@ -1,2 +1,7 @@
 django
 djangorestframework
+gunicorn
+Markdown
+Pillow
+django-filter
+
