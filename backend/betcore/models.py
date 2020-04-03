@@ -50,6 +50,12 @@ class Mybet(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+
+def bet_code_generator():
+    #to return a random string
+    pass
+
+
 #this is the model for the bet code generator
 class GenerateBetcode(models.Model):
     bets = models.ManyToManyField(Bet)
