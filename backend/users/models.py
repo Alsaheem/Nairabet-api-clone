@@ -14,6 +14,7 @@ class Profile(models.Model):
     is_addicted = models.BooleanField(default=False)
     # The current ammount that the user has in his account
     current_ammount = models.IntegerField()
+    profile_image = models.FileField(blank=True, null=True)
 
 
 # this is to create a user profile  instance immediately a user is created

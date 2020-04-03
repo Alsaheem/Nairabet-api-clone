@@ -4,4 +4,4 @@ gunicorn
 Markdown
 Pillow
 django-filter
-
+django-cors-headers

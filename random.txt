@@ -1,0 +1,4 @@
+This is where we put our random ideas
+
+@ olumide....theres a library called Django-Cors-headers......this library is used if you want your api to communicate with a frontend like react or vue
+  their repo is at  https://github.com/adamchainz/django-cors-headers
