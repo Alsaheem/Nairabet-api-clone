@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import string,random
 
 # Create your models here.
 
@@ -51,10 +52,8 @@ class Mybet(models.Model):
 
 
 
-def bet_code_generator():
-    #to return a random string
-    pass
-
+def bet_code_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 #this is the model for the bet code generator
 class GenerateBetcode(models.Model):
