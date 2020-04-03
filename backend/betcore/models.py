@@ -24,10 +24,14 @@ class Team(models.Model):
 
 #this is the model for each single bet
 class Bet(models.Model):
+    # the home team of the match
     home_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    # the away team of the match
     away_team = models.ForeignKey(Team, on_delete=models.CASCADE)
     match_time = models.DateTimeField(auto_now_add=True)
+    # to get if a match is playing curently
     is_currently_playing = models.BooleanField(default=False)
+    # to get if a match is available for betting
     is_available_for_betting = models.BooleanField(default=False)
 
     @property
@@ -38,7 +42,9 @@ class Bet(models.Model):
 class Outcome(models.Model):
     option = models.CharField(max_length=50)
     bet = models.ForeignKey(Bet,on_delete=models.CASCADE,related_name = 'outcomes')
+    # the odds of a particular outcome
     odd = models.IntegerField()
+    # would be true when the match is played finish
     is_match_outcome = models.BooleanField(default=False)
 
 
@@ -51,15 +57,19 @@ class Mybet(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-
+# function to generate a random value
 def bet_code_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 #this is the model for the bet code generator
 class GenerateBetcode(models.Model):
+    # this is the listof bets in the betslip
     bets = models.ManyToManyField(Bet)
+    # this is the ammount staked on the list of bets
     stake = models.IntegerField()
+    # this is the total return for the betslip
     total_return = models.CharField(max_length=10)
+    # this is the betcode for the particular bet picked
     bet_code = models.IntegerField()
 
     def save(self, *args, **kwargs):
