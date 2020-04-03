@@ -1,0 +1,32 @@
+###list of pages
+
+myBets Page
+        This page shows a list of bets that youve placed and lets you know if youve won or not
+checkout page
+        This endpoint is to checkout to stripe or paystack to fund your account
+betSlip page
+        this shows all your bet slip items......its a frontend thing
+ActiveBets page
+        This endpoint is to show your bets that are currently active won or lost
+Inplay page
+        This endpoint is to show all current matches that are on currently
+Betcode  page
+        This endpoint is to create a betcode from picked bets in the current betslip
+Load-Betcode page
+        This is an api endpoint to load a code ot betcode and let it generate a list of games in that betcode in your betslip
+Leagues page
+        This endpoint is for crud functionality for the Leagues creation
+Teams page
+        This endpoint is for crud functionality for the Teams creation
+Bet-Pick page
+        This is an api endpoint that shows the games available for betting and are active for betting
+Categories page
+        This endpoint is for crud functionality for the categories creation
+Top-Bets page
+        This endpoint shows the Bet which Occours most in that particular day
+Bet-Suggestion Page
+        This is an api endpoint that shows a list of bet suggestions for that particular day
+Blog Page
+        This is just a normal api endpoints for a blog-- we can use api viewsets
+Authentication Page
+        This page contains the api endpoints for the login and logout functionality-- we can use a library called django-rest-auth

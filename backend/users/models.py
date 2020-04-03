@@ -9,6 +9,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     is_addicted = models.BooleanField(default=False)
+    current_ammount = models.IntegerField()
     
 
 @receiver(post_save, sender=User)
