@@ -37,11 +37,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',  #cors headers  stuff
+
+    # my apps
     'betcore',
     'users',
     'paymentgateway',
+
+    # 3rd party
+    'corsheaders',  #cors headers  stuff
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    # for djano-rest-auth registaration feature
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
