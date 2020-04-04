@@ -13,12 +13,18 @@ class Profile(models.Model):
     #  OR OLUMIDE BELLO ADDICTION TO BREAST...OR MY ADDICTION TO ASS
     is_addicted = models.BooleanField(default=False)
     # The current ammount that the user has in his account
-    current_ammount = models.IntegerField()
+    current_ammount = models.IntegerField(default=0)
     profile_image = models.FileField(blank=True, null=True)
+
+    def __str__(self):
+        return "{}/s profile".format(self.user.username)
 
 
 # this is to create a user profile  instance immediately a user is created
-@receiver(post_save, sender=User)
-def ensure_profile_exists(sender, **kwargs):
-    if kwargs.get('created', False):
-        Profile.objects.get_or_create(user=kwargs.get('instance'))
+
+@receiver(post_save,sender=User)
+def user_is_created(sender, instance ,created ,**kwargs):
+  if created:
+    Profile.objects.create(user=instance)
+  else:
+    instance.profile.save()
