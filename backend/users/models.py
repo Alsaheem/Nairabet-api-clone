@@ -13,7 +13,7 @@ class Profile(models.Model):
     #  OR OLUMIDE BELLO ADDICTION TO BREAST...OR MY ADDICTION TO ASS
     is_addicted = models.BooleanField(default=False)
     # The current ammount that the user has in his account
-    current_ammount = models.IntegerField()
+    current_ammount = models.IntegerField(default='0')
     profile_image = models.FileField(blank=True, null=True)
 
 
