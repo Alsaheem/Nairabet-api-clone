@@ -25,9 +25,9 @@ class Team(models.Model):
 #this is the model for each single bet
 class Bet(models.Model):
     # the home team of the match
-    home_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    home_team = models.ForeignKey(Team, on_delete=models.CASCADE,related_name = 'home_teams')
     # the away team of the match
-    away_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    away_team = models.ForeignKey(Team, on_delete=models.CASCADE,related_name = 'away_teams')
     match_time = models.DateTimeField(auto_now_add=True)
     # to get if a match is playing curently
     is_currently_playing = models.BooleanField(default=False)
