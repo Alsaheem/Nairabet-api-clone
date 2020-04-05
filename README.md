@@ -47,5 +47,5 @@ $ python manage.py runserver
 #### Encounter any problem(s)? feel free to open an issue. If you feel you could make something better, please raise a ticket on Github and I'll look into it. Pull request are also welcome.
 
 ##  Developer(s)
-[Ayomide Adebisi](https://github.com/alsaheem)
+[Ayomide Adebisi](https://github.com/alsaheem) <br>
 [Olumide Bello](https://github.com/themaleem)
