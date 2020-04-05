@@ -17,7 +17,7 @@ class Category(models.Model):
 class League(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name="leagues",on_delete=models.CASCADE)
 
     def __str__(self):
         return "{}".format(self.name)
@@ -26,7 +26,7 @@ class League(models.Model):
 #this is the model for the diffrent teams possible with relationships to their various leagues
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    league = models.ForeignKey(League,on_delete=models.CASCADE)
+    league = models.ForeignKey(League, related_name="teams",on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
@@ -45,9 +45,12 @@ class Bet(models.Model):
     # to get if a match is available for betting
     is_available_for_betting = models.BooleanField(default=False)
 
-    @property
-    def outcomes():
-        return Bet.outcome_set.all()
+    # This is not necessary anymore since there's a related name 
+    # argument on thr foreign key relationsip
+
+    # @property
+    # def outcomes():
+    #     return Bet.outcome_set.all()
     
     def __str__(self):
         return "{}--vs--{}".format(self.home_team,self.away_team)

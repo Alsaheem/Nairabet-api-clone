@@ -28,5 +28,5 @@ Bet-Suggestion Page
         This is an api endpoint that shows a list of bet suggestions for that particular day
 Blog Page
         This is just a normal api endpoints for a blog-- we can use api viewsets
-Authentication Page
+*** Authentication Page
         This page contains the api endpoints for the login and logout functionality-- we can use a library called django-rest-auth

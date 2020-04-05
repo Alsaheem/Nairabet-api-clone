@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer
+from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer,BetSerializer
 from .models import Category,League,Team,Bet,Outcome,Mybet,GenerateBetcode
 
 # Create your views here.
@@ -27,3 +27,10 @@ class TeamViewSet(viewsets.ModelViewSet):
     """
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
+
+class BetViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Team instances.
+    """
+    serializer_class = BetSerializer
+    queryset = Bet.objects.all()

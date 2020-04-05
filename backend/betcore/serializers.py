@@ -3,21 +3,61 @@ from .models import Category,League,Team,Bet,Outcome,Mybet,GenerateBetcode
 from rest_framework import serializers
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     # serializer for the category model
+
+    leagues=serializers.HyperlinkedRelatedField(many=True,view_name='league-detail',read_only=True)
+
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description', 'created_at']
+        fields = [
+            'id',
+            'url',
+            'name', 
+            'description', 
+            'created_at',
+            'leagues'
+            ]
 
 
-class LeagueSerializer(serializers.HyperlinkedModelSerializer):
-    # serializer for the leagus model
-    class Meta:
-        model = League
-        fields = ['id', 'name', 'description','category']
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     # serializer for the teams model
     class Meta:
         model = Team
-        fields = ['id', 'name', 'description','league' ]
+        fields = [
+            'id', 
+            'url',
+            'name', 
+            'description',
+            'league' 
+            ]
+
+class LeagueSerializer(serializers.HyperlinkedModelSerializer):
+    # serializer for the leagus model
+    teams=TeamSerializer(many=True,read_only=True,)
+    class Meta:
+        model = League
+        fields = [
+            'id', 
+            'url',
+            'name', 
+            'description',
+            'category',
+            'teams',
+            ]
+
+class BetSerializer(serializers.HyperlinkedModelSerializer):
+    home_team=serializers.SlugRelatedField(queryset=Team.objects.all(),slug_field='name')
+    away_team=serializers.SlugRelatedField(queryset=Team.objects.all(),slug_field='name')
+    class Meta:
+        model=Bet
+        fields=[
+            'id',
+            'url',
+            'match_time',
+            'home_team',
+            'away_team',
+            'is_currently_playing',
+            'is_available_for_betting',
+        ]
