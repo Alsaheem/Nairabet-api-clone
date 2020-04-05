@@ -1,0 +1,4 @@
+done with authentication
+done with categories
+done with leagues
+done with teams
