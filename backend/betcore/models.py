@@ -14,11 +14,13 @@ class Category(models.Model):
 class League(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+
 
 #this is the model for the diffrent teams possible with relationships to their various leagues
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    League = models.ForeignKey(League,on_delete=models.CASCADE)
+    league = models.ForeignKey(League,on_delete=models.CASCADE)
     description = models.TextField()
 
 
