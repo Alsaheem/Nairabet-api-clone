@@ -8,6 +8,8 @@
 
 * only the backend is being currently developed
 
+* Deployed @  https://nairabet-api-clone.herokuapp.com/api/v1/
+
 ## Requirements
 * Any Operating System (ie. MacOS X, Linux, Windows)
 * Any IDE, with python installed on your system(ie. Pycharm, VSCode etc)
