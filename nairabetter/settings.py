@@ -144,13 +144,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # To reconfigure the production database
-# import dj_database_url
+import dj_database_url
 
-# prod_db  =  dj_database_url.config(conn_max_age=500)
+prod_db  =  dj_database_url.config(conn_max_age=500)
 
-# DATABASES['default'].update(prod_db)
+DATABASES['default'].update(prod_db)
