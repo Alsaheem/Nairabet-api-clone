@@ -30,11 +30,11 @@ $ git clone https://github.com/Alsaheem/Nairabet-api-clone.git
 
 #### 2. [Setup a virtual environment](https://programwithus.com/learn-to-code/Pip-and-virtualenv-on-Windows/)
 
-#### 3. Install project dependencies into current working environment then navigate to backend/ folder
+#### 3. Install project dependencies into current working environment then navigate to folder
 
 ```sh
 $ pip install requirements.txt
-$ cd backend/
+$ cd Nairabet-api-clone/
 ```
 
 #### 4. Run the application
