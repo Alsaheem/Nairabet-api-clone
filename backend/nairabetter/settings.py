@@ -25,7 +25,7 @@ SECRET_KEY = 'lu!-=rjt61fyekh6+1(^7v2$$2q_wp0bhrsmtm*p0nqzxm@)g#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nairabet-api-clone.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -139,5 +139,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# To reconfigure the production database
+import dj_database_url
+
+prod_db  =  dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(prod_db)
