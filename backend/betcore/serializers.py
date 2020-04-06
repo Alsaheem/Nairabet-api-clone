@@ -34,7 +34,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
             ]
 
 class LeagueSerializer(serializers.HyperlinkedModelSerializer):
-    # serializer for the leagus model
+    # serializer for the leagues model
     teams=TeamSerializer(many=True,read_only=True,)
     class Meta:
         model = League

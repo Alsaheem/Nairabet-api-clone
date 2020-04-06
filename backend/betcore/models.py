@@ -32,6 +32,13 @@ class Team(models.Model):
     def __str__(self):
         return "{}".format(self.name)
 
+class BetManager(models.Manager):
+    def all_bets(self):
+        return super().get_queryset()
+
+    def inplay(self):
+        # this gives all the bets that are currently playing...ie matches that are currently playing
+        return super().get_queryset().filter(is_currently_playing=True)
 
 #this is the model for each single bet
 class Bet(models.Model):
@@ -44,6 +51,8 @@ class Bet(models.Model):
     is_currently_playing = models.BooleanField(default=False)
     # to get if a match is available for betting
     is_available_for_betting = models.BooleanField(default=False)
+
+    objects = BetManager()
 
     # This is not necessary anymore since there's a related name 
     # argument on thr foreign key relationsip
