@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['nairabet-api-clone.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    #django defaultstuffs
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+
+
+
 ]
 
 SITE_ID = 1
