@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer,BetSerializer,MyBetSerializer
+from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer,BetSerializer,MyBetSerializer,BetcodeGeneratorSerializer
 from .models import Category,League,Team,Bet,Outcome,Mybet,GenerateBetcode
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -66,4 +66,11 @@ class MyBetViewSet(viewsets.ModelViewSet):
     queryset = Mybet.objects.all()
     serializer_class = MyBetSerializer
 
+
+class GenerateBetcodeViewSet(viewsets.ModelViewSet):
+    """
+    List all mybets, or create a new worker.
+    """
+    queryset = GenerateBetcode.objects.all()
+    serializer_class = BetcodeGeneratorSerializer
 

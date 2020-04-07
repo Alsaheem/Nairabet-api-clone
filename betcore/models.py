@@ -54,13 +54,13 @@ class Bet(models.Model):
 
     objects = BetManager()
 
-    # This is not necessary anymore since there's a related name 
+    # This is not necessary anymore since there's a related name
     # argument on thr foreign key relationsip
 
     # @property
     # def outcomes():
     #     return Bet.outcome_set.all()
-    
+
     def __str__(self):
         return "{}--vs--{}".format(self.home_team,self.away_team)
 
@@ -102,14 +102,14 @@ class GenerateBetcode(models.Model):
     # this is the total return for the betslip
     total_return = models.IntegerField()
     # this is the betcode for the particular bet picked
-    bet_code = models.IntegerField()
+    bet_code = models.CharField(blank=True, null=True,max_length=6)
 
     def save(self, *args, **kwargs):
         self.bet_code = bet_code_generator()
         super(GenerateBetcode, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "{}--to return {}".format(self.bet_code,self.total_return)
+        return "Betcode {}--to return {}".format(self.bet_code,self.total_return)
 
 
 
