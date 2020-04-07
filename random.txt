@@ -2,3 +2,24 @@ This is where we put our random ideas
 
 @ olumide....theres a library called Django-Cors-headers......this library is used if you want your api to communicate with a frontend like react or vue
   their repo is at  https://github.com/adamchainz/django-cors-headers
+
+
+
+
+
+
+please note that interfields have limit of number they can hold, for insance, on this model below
+
+class Mybet(models.Model):
+    stake = models.IntegerField()
+    total_return = models.IntegerField()
+
+the field of total return could be millions, but models.interfield() cannot hold million,  but models.bigintergerfield() can 
+
+
+
+
+
+on the betcode generator model, 
+
+the bets field should be a foreign key field from Mybets model not the Bet model
