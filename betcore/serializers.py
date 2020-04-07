@@ -13,8 +13,8 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'id',
             'url',
-            'name', 
-            'description', 
+            'name',
+            'description',
             'created_at',
             'leagues'
             ]
@@ -26,11 +26,11 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Team
         fields = [
-            'id', 
+            'id',
             'url',
-            'name', 
+            'name',
             'description',
-            'league' 
+            'league'
             ]
 
 class LeagueSerializer(serializers.HyperlinkedModelSerializer):
@@ -39,9 +39,9 @@ class LeagueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = League
         fields = [
-            'id', 
+            'id',
             'url',
-            'name', 
+            'name',
             'description',
             'category',
             'teams',
@@ -61,3 +61,19 @@ class BetSerializer(serializers.HyperlinkedModelSerializer):
             'is_currently_playing',
             'is_available_for_betting',
         ]
+
+
+class MyBetSerializer(serializers.ModelSerializer):
+    class Meta:
+        ordering = ['-id']
+        model = Mybet
+        fields=('id','bets','stake','total_return','customer_id','is_won')
+        extra_kwargs = {'bets': {'required': False}}
+
+
+class BetcodeGeneratorSerializer(serializers.ModelSerializer):
+    class Meta:
+        ordering = ['-id']
+        model = GenerateBetcode
+        fields=('id','bets','stake','total_return','bet_code')
+        extra_kwargs = {'bets': {'required': False}}

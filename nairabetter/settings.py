@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['nairabet-api-clone.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    #django defaultstuffs
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,8 +55,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
 
-    #API doc
-    'rest_framework_swagger',
+
+
 ]
 
 SITE_ID = 1
@@ -151,7 +152,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# This piece of code is required to get the 
+# This piece of code is required to get the
 # Documentaion schema class
 REST_FRAMEWORK={
 
