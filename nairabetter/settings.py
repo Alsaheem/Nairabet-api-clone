@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+
+    #API doc
+    'rest_framework_swagger',
 ]
 
 SITE_ID = 1
@@ -147,6 +150,13 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# This piece of code is required to get the 
+# Documentaion schema class
+REST_FRAMEWORK={
+
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
 
 
 # To reconfigure the production database
