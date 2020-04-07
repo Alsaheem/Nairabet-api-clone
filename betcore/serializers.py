@@ -47,9 +47,26 @@ class LeagueSerializer(serializers.HyperlinkedModelSerializer):
             'teams',
             ]
 
+class OutcomeSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    #this allows us to be able to edit the bet
+    class Meta:
+        model = Outcome
+        fields = [
+            'id',
+            'bet',
+            'option',
+            'odd',
+            'is_match_outcome'
+        ]
+        read_only_fields = ('bet',)
+        #this allows us to makerefrence to a bet and not mess things up...check the doocs
+
 class BetSerializer(serializers.HyperlinkedModelSerializer):
     home_team=serializers.SlugRelatedField(queryset=Team.objects.all(),slug_field='name')
     away_team=serializers.SlugRelatedField(queryset=Team.objects.all(),slug_field='name')
+    outcomes = OutcomeSerializer(many=True)
+
     class Meta:
         model=Bet
         fields=[
@@ -60,7 +77,16 @@ class BetSerializer(serializers.HyperlinkedModelSerializer):
             'away_team',
             'is_currently_playing',
             'is_available_for_betting',
+            'outcomes'
         ]
+
+
+    def create(self, validated_data):
+        outcomes = validated_data.pop('outcomes')
+        bet = Bet.objects.create(**validated_data)
+        for outcome in outcomes:
+            Outcome.objects.create(**outcome, bet=bet)
+        return bet
 
 
 class MyBetSerializer(serializers.ModelSerializer):

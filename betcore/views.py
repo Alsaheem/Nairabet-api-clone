@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer,BetSerializer,MyBetSerializer,BetcodeGeneratorSerializer
+from .serializers import CategorySerializer,LeagueSerializer,TeamSerializer,BetSerializer,MyBetSerializer,BetcodeGeneratorSerializer,OutcomeSerializer
 from .models import Category,League,Team,Bet,Outcome,Mybet,GenerateBetcode
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import filters
+from rest_framework.decorators import action
 # Create your views here.
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -40,6 +41,24 @@ class BetViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['match_time']
 
+    @action(detail=True, methods=["GET"])
+    def outomes(self, request, id=None):
+        bet = self.get_object()
+        outcomes = Outcome.objects.filter(bet=bet)
+        serializer = OutcomeSerializer(outcomes, many=True)
+        return Response(serializer.data, status=200)
+
+    @action(detail=True, methods=["POST"])
+    def outcome(self, request, id=None):
+        bet = self.get_object()
+        data = request.data
+        data["bet"] = bet.id
+        serializer = OutcomeSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.erros, status=400)
+
 class InPlayBets(APIView):
     """
     An apiView for viewing inplay Matches---currently playing matches.
@@ -65,6 +84,13 @@ class MyBetViewSet(viewsets.ModelViewSet):
     """
     queryset = Mybet.objects.all()
     serializer_class = MyBetSerializer
+
+    def perform_create(self, serializer):
+        data = self.request.data
+        customer_id = data["customer_id"]
+        serializer.save(customer_id=customer_id)
+
+
 
 
 class GenerateBetcodeViewSet(viewsets.ModelViewSet):
