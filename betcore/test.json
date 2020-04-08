@@ -1,0 +1,24 @@
+{
+  "bets": [
+    1,
+    2
+    ],
+  "stake": 200,
+  "total_return": 2000,
+  "customer_id": 2,
+  "is_won": false,
+  "outcomes": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ]
+
+}
+
+
+refrence for the error
+
+https://stackoverflow.com/questions/41869387/django-rest-framework-posting-multiple-objects-with-many-true-raise-attributee
