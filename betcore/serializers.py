@@ -103,8 +103,6 @@ class MyBetSerializer(serializers.ModelSerializer):
         extra_kwargs = {'bets':  {'required':False}}
 
     def create(self, validated_data):
-        print('*********')
-        print('*********')
         print(validated_data['bets'])
         print(validated_data['outcomes'])
         outcomes = validated_data.pop('outcomes')
@@ -116,7 +114,6 @@ class MyBetSerializer(serializers.ModelSerializer):
         # mybets = Mybet.objects.create(**validated_data)
         bets= validated_data.get('bets')
         customer_id= validated_data['customer_id']
-        print(customer_id)
         stake= validated_data.get('stake')
         total_return= validated_data.get('total_return')
         mybets = Mybet.objects.create(customer_id=customer_id,stake=stake,total_return=total_return)
@@ -133,8 +130,6 @@ class MyBetSerializer(serializers.ModelSerializer):
             else:
                 continue
 
-        print(picked_bets)
-        print(picked_outcomes)
         return outcomes
 
 
