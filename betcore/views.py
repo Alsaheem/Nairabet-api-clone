@@ -87,6 +87,7 @@ class MyBetViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
+        print(data)
         customer_id = data["customer_id"]
         serializer.save(customer_id=customer_id)
 

@@ -18,5 +18,5 @@ urlpatterns = [
         path('users/', include('users.urls')),
         path('payment/', include('paymentgateway.urls')),
         ])),
-    
+
 ]

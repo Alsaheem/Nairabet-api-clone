@@ -90,11 +90,35 @@ class BetSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MyBetSerializer(serializers.ModelSerializer):
+    bets =  BetSerializer(many=True,read_only=True)
+    outcomes = OutcomeSerializer(many=True)
+
     class Meta:
         ordering = ['-id']
         model = Mybet
-        fields=('id','bets','stake','total_return','customer_id','is_won')
-        extra_kwargs = {'bets': {'required': False}}
+        fields=('id','bets','stake','total_return','customer_id','is_won','outcomes')
+        extra_kwargs = {'outcomes':  {'required':False}}
+
+# def create(self, instance, validated_data):
+#         bets = validated_data.pop('bets')
+#         selected_outcomes = []
+#         total_odds = 0
+#         if bets is not None:
+#             for bet in bets:
+#                 outcomes = bet.pop('outcomes', None)
+#                 if outcomes is not None:
+#                     for outcome in outcomes:
+#                          if "id" in outcome.keys():
+#                              real_outcome  = Outcome.objects.get(id=outcome["id"])
+#                              if real_outcome.is_match_outcome == True:
+#                                 c = Bet.objects.get(id=outcome["id"])
+
+#                              else:
+#                                 continue
+#                         else:
+#                                 selected_outcomes.append(c.id)
+
+
 
 
 class BetcodeGeneratorSerializer(serializers.ModelSerializer):
