@@ -130,7 +130,7 @@ class MyBetSerializer(serializers.ModelSerializer):
             else:
                 continue
 
-        return outcomes
+        return mybet
 
 
 class BetcodeGeneratorSerializer(serializers.ModelSerializer):
