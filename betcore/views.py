@@ -7,6 +7,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import filters
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+
 # Create your views here.
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -84,13 +87,28 @@ class MyBetViewSet(viewsets.ModelViewSet):
     """
     queryset = Mybet.objects.all()
     serializer_class = MyBetSerializer
+    
+    # Token authentication is commented out until it is needed
+    # authentication_classes = (
+    #     TokenAuthentication,
+    #     )
+
+    permission_classes = (
+        IsAuthenticated,
+        )
+
+    # Now that user is logged in to use this endpoint
+    # and the logged in user owns the set of bets
+
+    # def perform_create(self, serializer):
+    #     serializer.save(customer_id=self.request.user.id)    
+
 
     def perform_create(self, serializer):
         data = self.request.data
         print(data)
         customer_id = data["customer_id"]
         serializer.save(customer_id=customer_id)
-
 
 
 
