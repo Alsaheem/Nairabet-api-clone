@@ -14,12 +14,15 @@ class Mybet(models.Model):
     stake = models.IntegerField()
     total_return = models.IntegerField()
 
-the field of total return could be millions, but models.interfield() cannot hold million,  but models.bigintergerfield() can 
+the field of total return could be millions, but models.interfield() cannot hold million,  but models.bigintergerfield() can
 
 
 
 
 
-on the betcode generator model, 
+on the betcode generator model,
 
 the bets field should be a foreign key field from Mybets model not the Bet model
+
+
+https://hackernoon.com/generate-beautiful-swagger-api-documentation-from-insomnia-ffaa2b77828e

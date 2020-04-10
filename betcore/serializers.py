@@ -116,14 +116,14 @@ class MyBetSerializer(serializers.ModelSerializer):
         customer_id= validated_data['customer_id']
         stake= validated_data.get('stake')
         total_return= validated_data.get('total_return')
-        mybets = Mybet.objects.create(customer_id=customer_id,stake=stake,total_return=total_return)
+        mybet = Mybet.objects.create(customer_id=customer_id,stake=stake,total_return=total_return)
         for b in bets:
-            mybets.bets.add(b)
+            mybet.bets.add(b)
         for outcome in outcomes:
             if "id" in outcome.keys():
                 if Outcome.objects.filter(id=outcome["id"]).exists():
                     o = Outcome.objects.get(id=outcome["id"])
-                    mybets.outcomes.add(o)
+                    mybet.outcomes.add(o)
                     picked_outcomes.append(o.id)
                 else:
                     continue
