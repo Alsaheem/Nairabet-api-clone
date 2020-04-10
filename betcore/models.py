@@ -79,8 +79,8 @@ class Outcome(models.Model):
 
 #this is the model for the collection of bet that a person played or beton
 class Mybet(models.Model):
-    bets = models.ManyToManyField(Bet)
-    outcomes = models.ManyToManyField(Outcome)
+    bets = models.ManyToManyField(Bet,related_name='mybet_bets')
+    outcomes = models.ManyToManyField(Outcome,related_name='mybet_outcomes')
     stake = models.IntegerField()
     total_return = models.IntegerField()
     is_won = models.BooleanField(default=False)

@@ -85,15 +85,9 @@ class BetSerializer(serializers.HyperlinkedModelSerializer):
             Outcome.objects.create(**outcome, bet=bet)
         return bet
 
-class BSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model=Bet
-        fields=[
-            'id'
-        ]
 
 class MyBetSerializer(serializers.ModelSerializer):
-    # bets =  BSerializer(many=True)
+    # serializer for the mybets model
     outcomes = OutcomeSerializer(many=True)
 
     class Meta:
@@ -111,7 +105,6 @@ class MyBetSerializer(serializers.ModelSerializer):
 
         picked_outcomes = []
         picked_bets = []
-        # mybets = Mybet.objects.create(**validated_data)
         bets= validated_data.get('bets')
         customer_id= validated_data['customer_id']
         stake= validated_data.get('stake')
@@ -119,6 +112,7 @@ class MyBetSerializer(serializers.ModelSerializer):
         mybet = Mybet.objects.create(customer_id=customer_id,stake=stake,total_return=total_return)
         for b in bets:
             mybet.bets.add(b)
+            picked_bets.append(b.id)
         for outcome in outcomes:
             if "id" in outcome.keys():
                 if Outcome.objects.filter(id=outcome["id"]).exists():
