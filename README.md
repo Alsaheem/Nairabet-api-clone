@@ -8,7 +8,7 @@
 
 * only the backend is being currently developed
 
-* Deployed @  https://nairabet-api-clone.herokuapp.com/api/v1/
+* Deployed @  https://nairabet-api-clone.herokuapp.com/
 
 ## Requirements
 * Any Operating System (ie. MacOS X, Linux, Windows)
