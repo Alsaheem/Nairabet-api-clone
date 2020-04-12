@@ -19,6 +19,19 @@
 }
 
 
-refrence for the error
+{
+  "bets": [
+    1,
+    2
+    ],
+  "name": "alsaheem",
+ "outcomes": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ]
 
-https://stackoverflow.com/questions/41869387/django-rest-framework-posting-multiple-objects-with-many-true-raise-attributee
+}

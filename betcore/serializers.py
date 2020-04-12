@@ -100,9 +100,6 @@ class MyBetSerializer(serializers.ModelSerializer):
         print(validated_data['bets'])
         print(validated_data['outcomes'])
         outcomes = validated_data.pop('outcomes')
-        print('*********')
-        print('*********')
-
         picked_outcomes = []
         picked_bets = []
         bets= validated_data.get('bets')
@@ -132,5 +129,30 @@ class BetcodeGeneratorSerializer(serializers.ModelSerializer):
     class Meta:
         ordering = ['-id']
         model = GenerateBetcode
-        fields=('id','bets','outcomes','bet_code')
+        fields=('id','bets','outcomes','bet_code','name')
         extra_kwargs = {'bets': {'required': False}}
+
+    def create(self, validated_data):
+        print(validated_data['bets'])
+        print(validated_data)
+        outcomes = validated_data.pop('outcomes')
+        picked_outcomes = []
+        picked_bets = []
+        bets= validated_data.get('bets')
+        name= validated_data.get('name')
+        betcodegen = GenerateBetcode.objects.create(name=name)
+        for b in bets:
+            betcodegen.bets.add(b)
+            picked_bets.append(b.id)
+        for outcome in outcomes:
+            if "id" in outcome.keys():
+                if Outcome.objects.filter(id=outcome["id"]).exists():
+                    o = Outcome.objects.get(id=outcome["id"])
+                    betcodegen.outcomes.add(o)
+                    picked_outcomes.append(o.id)
+                else:
+                    continue
+            else:
+                continue
+
+        return betcodegen

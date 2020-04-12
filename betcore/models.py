@@ -100,6 +100,7 @@ class GenerateBetcode(models.Model):
     bets = models.ManyToManyField(Bet)
     outcomes = models.ManyToManyField(Outcome,related_name='bet_gen_outcomes')
     bet_code = models.CharField(blank=True, null=True,max_length=6)
+    name = models.CharField(max_length=200)
 
     def save(self, *args, **kwargs):
         self.bet_code = bet_code_generator()
