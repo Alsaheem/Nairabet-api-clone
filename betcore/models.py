@@ -98,11 +98,8 @@ def bet_code_generator(size=6, chars=string.ascii_uppercase + string.digits):
 class GenerateBetcode(models.Model):
     # this is the listof bets in the betslip
     bets = models.ManyToManyField(Bet)
+    outcomes = models.ManyToManyField(Outcome,related_name='bet_gen_outcomes')
     # this is the ammount staked on the list of bets
-    stake = models.IntegerField()
-    # this is the total return for the betslip
-    total_return = models.IntegerField()
-    # this is the betcode for the particular bet picked
     bet_code = models.CharField(blank=True, null=True,max_length=6)
 
     def save(self, *args, **kwargs):
@@ -111,6 +108,4 @@ class GenerateBetcode(models.Model):
 
     def __str__(self):
         return "Betcode {}--to return {}".format(self.bet_code,self.total_return)
-
-
 
