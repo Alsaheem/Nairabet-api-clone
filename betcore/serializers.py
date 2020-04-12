@@ -128,8 +128,9 @@ class MyBetSerializer(serializers.ModelSerializer):
 
 
 class BetcodeGeneratorSerializer(serializers.ModelSerializer):
+    outcomes = OutcomeSerializer(many=True)
     class Meta:
         ordering = ['-id']
         model = GenerateBetcode
-        fields=('id','bets','stake','total_return','bet_code')
+        fields=('id','bets','outcomes','bet_code')
         extra_kwargs = {'bets': {'required': False}}

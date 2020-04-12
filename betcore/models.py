@@ -99,7 +99,6 @@ class GenerateBetcode(models.Model):
     # this is the listof bets in the betslip
     bets = models.ManyToManyField(Bet)
     outcomes = models.ManyToManyField(Outcome,related_name='bet_gen_outcomes')
-    # this is the ammount staked on the list of bets
     bet_code = models.CharField(blank=True, null=True,max_length=6)
 
     def save(self, *args, **kwargs):
